@@ -34,7 +34,8 @@ const lockValue = ref(false)
         class="text-sm md:text-xl inset-shadow-sm inset-shadow-indigo-500 rounded-2xl bg-white max-w-15 md:max-w-20"
       >
         <input
-          :class="lockValue ? 'blur-sm' : 'blur-none'"
+          :disabled="lockValue"
+          :class="lockValue ? 'blur-sm disabled:pointer-events-none' : 'blur-none'"
           class="text-center outline-0 w-full h-full p-3"
           type="text"
           placeholder="Очки"
