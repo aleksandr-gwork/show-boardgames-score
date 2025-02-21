@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+    --color-bg: #ffffff;
+    --color-text: #000000;
+    --color-winner: #86ff8b;
+    --color-draw: #ffc16b;
+    --color-accent: #0000ff;
+    --color-default: #d9d9d9;
+    --border-radius: 12px;
+    --font-family: 'Roboto';
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-family), sans-serif;
+}
