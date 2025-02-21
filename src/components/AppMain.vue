@@ -1,8 +1,11 @@
+<script setup>
+import PlayerCardList from '@/components/PlayerCardList.vue'
+</script>
+
 <template>
-  <main class="bg-purple-50">
-    <div class="container">
-      <div class="flex flex-col">
-      </div>
+  <main class="h-fit p-4">
+    <div class="container mx-auto">
+      <player-card-list></player-card-list>
     </div>
   </main>
 </template>
