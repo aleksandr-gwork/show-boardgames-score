@@ -1,6 +1,7 @@
 <script setup>
-import PlayerCard from '@/components/PlayerCard.vue'
 import { ref } from 'vue'
+import PlayerCard from '@/components/PlayerCard.vue'
+import AppModal from '@/components/AppModal.vue'
 
 const testData = [
   { id: 1, name: 'Игрок 1', score: 24, lock: false },
@@ -22,4 +23,5 @@ const lockScore = (id) => {
       :key="player.id"
     ></player-card>
   </div>
+  <app-modal v-if="false"></app-modal>
 </template>

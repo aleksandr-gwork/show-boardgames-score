@@ -1,10 +1,11 @@
 <script setup>
+import AppButton from './AppButton.vue'
+
 defineProps({
   player: Object,
 })
 
 defineEmits(['lockScore'])
-
 </script>
 
 <template>
@@ -23,15 +24,11 @@ defineEmits(['lockScore'])
     <!-- /Input -->
 
     <div class="flex gap-3">
-      <!-- LockBtn -->
-      <button
+      <app-button
         @click.prevent="$emit('lockScore', player.id)"
-        class="text-fuchsia-950 bg-indigo-400 shadow-2xs active:scale-95 rounded-2xl px-4 cursor-pointer transition"
-        type="button"
-      >
-        LOCK
-      </button>
-      <!-- /LockBtn -->
+        color="orange"
+        title="LOCK"
+      ></app-button>
 
       <!-- Score input -->
       <div
