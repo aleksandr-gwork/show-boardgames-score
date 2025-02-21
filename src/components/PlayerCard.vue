@@ -1,11 +1,10 @@
 <script setup>
-import { ref } from 'vue'
-
 defineProps({
-  lock: Boolean,
+  player: Object,
 })
 
-const lockValue = ref(false)
+defineEmits(['lockScore'])
+
 </script>
 
 <template>
@@ -14,14 +13,19 @@ const lockValue = ref(false)
   >
     <!-- Input -->
     <div class="text-sm md:text-xl inset-shadow-sm inset-shadow-indigo-500 rounded-2xl bg-white">
-      <input class="outline-0 w-full h-full p-3" type="text" placeholder="Имя игрока" />
+      <input
+        :value="player.name"
+        class="outline-0 w-full h-full p-3"
+        type="text"
+        placeholder="Имя игрока"
+      />
     </div>
     <!-- /Input -->
 
     <div class="flex gap-3">
       <!-- LockBtn -->
       <button
-        @click="lockValue = !lockValue"
+        @click.prevent="$emit('lockScore', player.id)"
         class="text-fuchsia-950 bg-indigo-400 shadow-2xs active:scale-95 rounded-2xl px-4 cursor-pointer transition"
         type="button"
       >
@@ -34,8 +38,9 @@ const lockValue = ref(false)
         class="text-sm md:text-xl inset-shadow-sm inset-shadow-indigo-500 rounded-2xl bg-white max-w-15 md:max-w-20"
       >
         <input
-          :disabled="lockValue"
-          :class="lockValue ? 'blur-sm disabled:pointer-events-none' : 'blur-none'"
+          :value="player.score"
+          :disabled="player.lock"
+          :class="player.lock ? 'blur-sm disabled:pointer-events-none' : 'blur-none'"
           class="text-center outline-0 w-full h-full p-3"
           type="text"
           placeholder="Очки"

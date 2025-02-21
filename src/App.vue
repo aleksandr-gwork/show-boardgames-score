@@ -1,6 +1,7 @@
 <script setup>
 import AppHeader from '@/components/AppHeader.vue'
 import AppMain from '@/components/AppMain.vue'
+import AppModal from '@/components/AppModal.vue'
 </script>
 
 <template>
@@ -8,4 +9,5 @@ import AppMain from '@/components/AppMain.vue'
     <app-header></app-header>
     <app-main></app-main>
   </div>
+  <app-modal title="Пипа?"></app-modal>
 </template>
