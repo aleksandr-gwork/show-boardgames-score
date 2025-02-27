@@ -1,27 +1,35 @@
 <script setup>
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 import PlayerCard from '@/components/PlayerCard.vue'
 import AppModal from '@/components/AppModal.vue'
 
-const testData = [
-  { id: 1, name: 'Игрок 1', score: 24, lock: false },
-  { id: 2, name: 'Игрок 2', score: 224, lock: false },
-  { id: 3, name: 'Игрок 3', score: null, lock: false },
-]
-const data = ref(testData)
+const users = inject('users')
+
+const isModalOpen = ref(false)
+const cardId = ref(null)
+
+const openModal = (id) => {
+  isModalOpen.value = true
+  cardId.value = id
+}
 const lockScore = (id) => {
-  data.value.map((itm) => itm.id === id ? itm.lock = true : itm)
+  users.value.map((itm) => (itm.id === id ? (itm.lock = true) : itm))
+  isModalOpen.value = false
 }
 </script>
 
 <template>
   <div class="flex flex-col gap-4">
     <player-card
-      @lock-score="lockScore"
-      v-for="player in data"
+      @open-modal="openModal"
+      v-for="player in users"
       :player="player"
       :key="player.id"
     ></player-card>
   </div>
-  <app-modal v-if="false"></app-modal>
+  <app-modal
+    v-if="isModalOpen"
+    @lockScore="lockScore(cardId)"
+    @notLockScore="isModalOpen = false"
+  ></app-modal>
 </template>

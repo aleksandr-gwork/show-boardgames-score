@@ -1,5 +1,7 @@
 <script setup>
 import AppButton from './AppButton.vue'
+
+defineEmits(['lockScore', 'notLockScore'])
 </script>
 
 <template>
@@ -14,8 +16,13 @@ import AppButton from './AppButton.vue'
         После подтверждения результата изменить значение очков нельзя!
       </p>
       <div class="flex justify-between w-full gap-3">
-        <app-button title="Ну да!" color="green" full></app-button>
-        <app-button title="Пока нет!" color="red" full></app-button>
+        <app-button title="Ну да!" color="green" full @click="$emit('lockScore')"></app-button>
+        <app-button
+          title="Пока нет!"
+          color="orange"
+          full
+          @click="$emit('notLockScore')"
+        ></app-button>
       </div>
     </div>
   </div>

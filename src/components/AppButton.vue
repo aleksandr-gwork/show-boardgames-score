@@ -6,13 +6,17 @@ defineProps({
     validator: (value) => ['indigo', 'orange', 'green'].includes(value),
   },
   full: Boolean,
+  disabled: Boolean,
 })
+defineEmits(['action'])
 </script>
 
 <template>
   <button
+    type="button"
+    :disabled="disabled"
     :class="color"
-    class="flex items-center justify-center py-3 px-5 shadow-sm rounded-2xl border border-transparent active:scale-95 transition cursor-pointer"
+    class="flex items-center justify-center py-3 px-5 shadow-sm rounded-2xl border border-transparent transition cursor-pointer"
   >
     {{ title }}
   </button>
@@ -25,11 +29,11 @@ defineProps({
   color: white;
 }
 
-.orange:hover {
+.orange:not(:disabled):hover {
   background-color: darkorange;
 }
 
-.orange:active {
+.orange:not(:disabled):active {
   background-color: darkorange;
   border: 1px solid black;
 }
@@ -41,7 +45,7 @@ defineProps({
   color: white;
 }
 
-.indigo:hover {
+.indigo {
   background-color: indigo;
 }
 
@@ -57,12 +61,20 @@ defineProps({
   color: white;
 }
 
-.green:hover {
+.green {
   background-color: darkgreen;
 }
 
 .green:active {
   background-color: darkgreen;
   border: 1px solid black;
+}
+
+button:disabled {
+  background-color: gray;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.95);
 }
 </style>

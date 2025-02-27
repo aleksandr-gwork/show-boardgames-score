@@ -5,7 +5,7 @@ defineProps({
   player: Object,
 })
 
-defineEmits(['lockScore'])
+defineEmits(['openModal'])
 </script>
 
 <template>
@@ -25,7 +25,7 @@ defineEmits(['lockScore'])
 
     <div class="flex gap-3">
       <app-button
-        @click.prevent="$emit('lockScore', player.id)"
+        @click.prevent="$emit('openModal', player.id)"
         :disabled="player.lock"
         color="orange"
         title="LOCK"
