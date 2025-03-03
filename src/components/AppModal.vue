@@ -6,7 +6,7 @@ defineEmits(['lockScore', 'notLockScore'])
 
 <template>
   <div
-    class="absolute z-50 top-0 left-0 h-full w-full bg-black/50 flex justify-center items-center"
+    class="fixed z-50 top-0 left-0 h-full w-full bg-black/50 flex justify-center items-center"
   >
     <div
       class="min-h-[250px] w-[400px] py-5 px-7 mx-5 bg-white flex flex-col gap-4 items-center justify-center rounded-2xl"
