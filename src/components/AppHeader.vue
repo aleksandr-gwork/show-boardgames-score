@@ -1,5 +1,14 @@
 <script setup>
+import { inject } from 'vue'
 import AppButton from './AppButton.vue'
+
+const users = inject('users')
+
+function openScores() {
+  users.value.forEach((itm) => {
+    itm.lock = false
+  })
+}
 </script>
 
 <template>
@@ -10,7 +19,7 @@ import AppButton from './AppButton.vue'
       >
         <input class="outline-0 w-full h-full p-3" type="text" placeholder="Название игры" />
       </div>
-      <app-button title="Результат" color="green"></app-button>
+      <app-button @click="openScores()" title="Результат" color="green"></app-button>
     </div>
   </header>
 </template>
