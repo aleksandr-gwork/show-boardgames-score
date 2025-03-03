@@ -10,7 +10,13 @@ defineEmits(['openModal'])
 
 <template>
   <div
-    class="flex gap-4 p-4 justify-between rounded-xl bg-indigo-200 shadow-md hover:shadow-indigo-300 transition"
+    :class="{
+      'bg-indigo-200 shadow-md hover:shadow-indigo-300': player.place === 0,
+      'bg-green-500 shadow-2xl shadow-lime-200': player.place === 1,
+      'bg-amber-500': player.place === 2,
+      'bg-gray-500': player.place > 2,
+    }"
+    class="flex gap-4 p-4 justify-between rounded-xl transition"
   >
     <!-- Input -->
     <div class="text-sm md:text-xl inset-shadow-sm inset-shadow-indigo-500 rounded-2xl bg-white">

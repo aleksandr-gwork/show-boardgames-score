@@ -23,6 +23,7 @@ function addCard() {
     name: null,
     score: null,
     lock: false,
+    place: 0,
   })
 }
 </script>

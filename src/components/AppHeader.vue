@@ -1,14 +1,22 @@
 <script setup>
-import { inject } from 'vue'
+import { computed, inject } from 'vue'
 import AppButton from './AppButton.vue'
 
 const users = inject('users')
 
 function openScores() {
-  users.value.forEach((itm) => {
-    itm.lock = false
+  users.value.sort((currentUser, nextUser) => nextUser.score - currentUser.score)
+  users.value.forEach((currentUser, index) => {
+    currentUser.place = index + 1
+    currentUser.lock = false
   })
+  localStorage.setItem('users', JSON.stringify(users.value))
 }
+
+const isEveryLocked = computed(() => {
+  return users.value.every((player) => player.lock)
+})
+
 </script>
 
 <template>
@@ -19,7 +27,12 @@ function openScores() {
       >
         <input class="outline-0 w-full h-full p-3" type="text" placeholder="Название игры" />
       </div>
-      <app-button @click="openScores()" title="Результат" color="green"></app-button>
+      <app-button
+        :disabled="!isEveryLocked"
+        @click="openScores()"
+        title="Результат"
+        color="green"
+      ></app-button>
     </div>
   </header>
 </template>

@@ -15,7 +15,10 @@ defineEmits(['action'])
   <button
     type="button"
     :disabled="disabled"
-    :class="color"
+    :class="{
+      'w-full': full,
+      [color]: true,
+    }"
     class="flex items-center justify-center py-3 px-5 shadow-sm rounded-2xl border border-transparent transition cursor-pointer"
   >
     {{ title }}
@@ -65,16 +68,13 @@ defineEmits(['action'])
   background-color: darkgreen;
 }
 
-.green:active {
+.green:not(:disabled):active {
   background-color: darkgreen;
   border: 1px solid black;
+  transform: scale(0.95);
 }
 
 button:disabled {
   background-color: gray;
-}
-
-button:not(:disabled):active {
-  transform: scale(0.95);
 }
 </style>
