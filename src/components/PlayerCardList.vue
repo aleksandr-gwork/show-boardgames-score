@@ -16,6 +16,15 @@ const lockScore = (id) => {
   users.value.map((itm) => (itm.id === id ? (itm.lock = true) : itm))
   isModalOpen.value = false
 }
+
+function addCard() {
+  users.value.push({
+    id: new Date().getTime(),
+    name: null,
+    score: null,
+    lock: false,
+  })
+}
 </script>
 
 <template>
@@ -26,6 +35,13 @@ const lockScore = (id) => {
       :player="player"
       :key="player.id"
     ></player-card>
+    <button
+      type="button"
+      class="py-3 px-5 shadow-sm rounded-2xl border border-transparent transition cursor-pointer hover:bg-indigo-200"
+      @click.prevent="addCard()"
+    >
+      Добавить игрока
+    </button>
   </div>
   <app-modal
     v-if="isModalOpen"
