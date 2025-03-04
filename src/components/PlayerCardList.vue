@@ -8,18 +8,21 @@ const users = inject('users')
 const isModalOpen = ref(false)
 const cardId = ref(null)
 const currentScore = ref(null)
+const currentName = ref(null)
 
-const openModal = (id, score) => {
+const openModal = (id, score, name) => {
   isModalOpen.value = true
   cardId.value = id
   currentScore.value = score
+  currentName.value = name
 }
 
-const lockScore = (id, score) => {
+const lockScore = (id, score, name) => {
   users.value.map((itm) => {
     if (itm.id === id) {
       itm.lock = true
       itm.score = score
+      itm.name = name
     }
   })
   isModalOpen.value = false

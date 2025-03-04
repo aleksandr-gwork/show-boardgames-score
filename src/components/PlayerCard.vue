@@ -9,7 +9,7 @@ defineProps({
 defineEmits(['openModal', 'score'])
 
 const valueScore = ref(null)
-
+const valueName = ref(null)
 </script>
 
 <template>
@@ -25,7 +25,7 @@ const valueScore = ref(null)
     <!-- Input -->
     <div class="text-sm md:text-xl inset-shadow-sm inset-shadow-indigo-500 rounded-2xl bg-white">
       <input
-        :value="player.name"
+        v-model="valueName"
         class="outline-0 w-full h-full p-3"
         type="text"
         placeholder="Имя игрока"
@@ -35,7 +35,7 @@ const valueScore = ref(null)
 
     <div class="flex gap-3">
       <app-button
-        @click.prevent="$emit('openModal', player.id, valueScore)"
+        @click.prevent="$emit('openModal', player.id, valueScore, valueName)"
         :disabled="player.lock"
         color="orange"
         title="LOCK"
