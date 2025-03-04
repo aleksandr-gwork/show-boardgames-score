@@ -1,11 +1,15 @@
 <script setup>
+import { ref } from 'vue'
 import AppButton from './AppButton.vue'
 
 defineProps({
   player: Object,
 })
 
-defineEmits(['openModal'])
+defineEmits(['openModal', 'score'])
+
+const valueScore = ref(null)
+
 </script>
 
 <template>
@@ -31,7 +35,7 @@ defineEmits(['openModal'])
 
     <div class="flex gap-3">
       <app-button
-        @click.prevent="$emit('openModal', player.id)"
+        @click.prevent="$emit('openModal', player.id, valueScore)"
         :disabled="player.lock"
         color="orange"
         title="LOCK"
@@ -42,7 +46,7 @@ defineEmits(['openModal'])
         class="text-sm md:text-xl inset-shadow-sm inset-shadow-indigo-500 rounded-2xl bg-white max-w-15 md:max-w-20"
       >
         <input
-          :value="player.score"
+          v-model="valueScore"
           :disabled="player.lock"
           :class="player.lock ? 'blur-sm disabled:pointer-events-none' : 'blur-none'"
           class="text-center outline-0 w-full h-full p-3"

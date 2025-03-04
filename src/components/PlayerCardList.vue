@@ -7,13 +7,21 @@ const users = inject('users')
 
 const isModalOpen = ref(false)
 const cardId = ref(null)
+const currentScore = ref(null)
 
-const openModal = (id) => {
+const openModal = (id, score) => {
   isModalOpen.value = true
   cardId.value = id
+  currentScore.value = score
 }
-const lockScore = (id) => {
-  users.value.map((itm) => (itm.id === id ? (itm.lock = true) : itm))
+
+const lockScore = (id, score) => {
+  users.value.map((itm) => {
+    if (itm.id === id) {
+      itm.lock = true
+      itm.score = score
+    }
+  })
   isModalOpen.value = false
 }
 
@@ -46,7 +54,7 @@ function addCard() {
   </div>
   <app-modal
     v-if="isModalOpen"
-    @lockScore="lockScore(cardId)"
+    @lockScore="lockScore(cardId, currentScore)"
     @notLockScore="isModalOpen = false"
   ></app-modal>
 </template>
