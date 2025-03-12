@@ -6,7 +6,7 @@ defineProps({
   player: Object,
 })
 
-defineEmits(['openModal', 'score'])
+defineEmits(['openModal'])
 
 const valueScore = ref(null)
 const valueName = ref(null)
@@ -16,7 +16,7 @@ const valueName = ref(null)
   <div
     :class="{
       'bg-indigo-200 shadow-md hover:shadow-indigo-300': player.place === 0,
-      'bg-green-500 shadow-2xl shadow-lime-200': player.place === 1,
+      'bg-green-500': player.place === 1,
       'bg-amber-500': player.place === 2,
       'bg-gray-500': player.place > 2,
     }"
@@ -26,6 +26,7 @@ const valueName = ref(null)
     <div class="text-sm md:text-xl inset-shadow-sm inset-shadow-indigo-500 rounded-2xl bg-white">
       <input
         v-model="valueName"
+        :disabled="player.lock"
         class="outline-0 w-full h-full p-3"
         type="text"
         placeholder="Имя игрока"
@@ -34,12 +35,14 @@ const valueName = ref(null)
     <!-- /Input -->
 
     <div class="flex gap-3">
+      <!-- Lock button -->
       <app-button
         @click.prevent="$emit('openModal', player.id, valueScore, valueName)"
         :disabled="player.lock"
         color="orange"
         title="LOCK"
       ></app-button>
+      <!-- /Lock button -->
 
       <!-- Score input -->
       <div
@@ -49,7 +52,7 @@ const valueName = ref(null)
           v-model="valueScore"
           :disabled="player.lock"
           :class="player.lock ? 'blur-sm disabled:pointer-events-none' : 'blur-none'"
-          class="text-center outline-0 w-full h-full p-3"
+          class="text-center outline-0 w-full h-full p-3 min-w-[50px]"
           type="text"
           placeholder="Очки"
         />
