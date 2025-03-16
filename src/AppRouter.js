@@ -12,7 +12,7 @@ const routes = [
 ]
 
 const AppRouter = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/show-boardgames-score/'),
   routes,
 })
 
